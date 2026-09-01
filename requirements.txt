@@ -1,0 +1,5 @@
+python-dotenv
+pydantic-settings
+pypdf
+pypdf
+cryptography
