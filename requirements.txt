@@ -3,3 +3,4 @@ pydantic-settings
 pypdf
 pypdf
 cryptography
+langchain-text-splitters
