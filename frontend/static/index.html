@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pregni Guide</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>🤰 Pregni Guide</h1>
+      <p>Ask a pregnancy-related question. This is not a substitute for medical advice.</p>
+    </header>
+
+    <div id="chat" class="chat"></div>
+
+    <div id="typing" class="typing hidden">Pregni Guide is thinking...</div>
+
+    <form id="chat-form" class="chat-form">
+      <input
+        id="question-input"
+        type="text"
+        placeholder="e.g. Is it safe to drink coffee during pregnancy?"
+        autocomplete="off"
+        required
+      />
+      <button type="submit">Send</button>
+    </form>
+
+    <p id="error-banner" class="error hidden"></p>
+  </div>
+
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>

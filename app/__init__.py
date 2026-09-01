@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from config.settings import settings
 
@@ -12,6 +12,6 @@ def create_app() -> Flask:
 
     @app.route("/")
     def home():
-        return "Pregni Guide API is running. Frontend comes in a later step."
+        return render_template("index.html")
 
     return app
