@@ -4,3 +4,7 @@ pypdf
 pypdf
 cryptography
 langchain-text-splitters
+langchain-huggingface
+langchain-community
+sentence-transformers
+faiss-cpu
