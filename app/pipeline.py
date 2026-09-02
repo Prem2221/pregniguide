@@ -46,5 +46,6 @@ def answer_question(question: str) -> dict:
     return {
         "answer_markdown": structured.answer_markdown,
         "comparison": structured.comparison.model_dump() if structured.comparison else None,
+        "follow_up_questions": structured.follow_up_questions,
         "sources": sources,
     }

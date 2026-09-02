@@ -15,4 +15,5 @@ class Comparison(BaseModel):
 
 class StructuredAnswer(BaseModel):
     answer_markdown: str = Field(description="The main answer, in simple language, using markdown formatting and emojis where appropriate")
-    comparison: Comparison | None = Field(default=None, description="Populated only if the question asks to compare two things")
+    comparison: Comparison | None = Field(default=None)
+    follow_up_questions: list[str] = Field(default_factory=list, description="2-3 short, relevant follow-up questions the user might naturally ask next")

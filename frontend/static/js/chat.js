@@ -21,6 +21,25 @@ function renderComparisonTable(comparison) {
   return table;
 }
 
+function renderFollowUps(questions) {
+  const wrap = document.createElement("div");
+  wrap.className = "follow-ups";
+
+  questions.forEach(q => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "follow-up-btn";
+    btn.textContent = q;
+    btn.addEventListener("click", () => {
+      inputEl.value = q;
+      formEl.requestSubmit();
+    });
+    wrap.appendChild(btn);
+  });
+
+  return wrap;
+}
+
 function addMessage(text, sender, extras = {}) {
   const msg = document.createElement("div");
   msg.className = `message ${sender}`;
@@ -32,6 +51,10 @@ function addMessage(text, sender, extras = {}) {
 
     if (extras.comparison) {
       msg.appendChild(renderComparisonTable(extras.comparison));
+    }
+
+    if (extras.followUps && extras.followUps.length > 0) {
+      msg.appendChild(renderFollowUps(extras.followUps));
     }
   } else {
     msg.textContent = text;
@@ -76,6 +99,7 @@ formEl.addEventListener("submit", async (e) => {
     addMessage(data.answer_markdown, "bot", {
       sources: data.sources || [],
       comparison: data.comparison || null,
+      followUps: data.follow_up_questions || [],
     });
   } catch (err) {
     errorEl.textContent = err.message;

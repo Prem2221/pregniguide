@@ -129,3 +129,25 @@ margin-top: 8px;
 .hidden {
 display: none;
 }
+
+.follow-ups {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.follow-up-btn {
+  background: #fff;
+  border: 1px solid #FF5A5F;
+  color: #FF5A5F;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.follow-up-btn:hover {
+  background: #FF5A5F;
+  color: white;
+}

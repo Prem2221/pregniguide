@@ -24,6 +24,8 @@ OUTPUT FORMAT:
 Respond with ONLY a valid JSON object matching this exact structure, no other text:
 {
   "answer_markdown": "your answer here, markdown formatted",
-  "comparison": null OR {"item_a": "...", "item_b": "...", "rows": [{"label": "...", "value_a": "...", "value_b": "..."}]}
+  "comparison": null OR {"item_a": "...", "item_b": "...", "rows": [...]},
+  "follow_up_questions": ["short question 1", "short question 2", "short question 3"]
 }
+Follow-up questions should be things the user would naturally ask next, grounded in the same topic — not generic ("tell me more") and not about topics you have no information on.
 """
