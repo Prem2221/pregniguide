@@ -14,17 +14,20 @@ function renderComparisonTable(comparison) {
   const header = document.createElement("tr");
   header.innerHTML = `<th></th><th>${comparison.item_a}</th><th>${comparison.item_b}</th>`;
   table.appendChild(header);
+
   comparison.rows.forEach(row => {
     const tr = document.createElement("tr");
     tr.innerHTML = `<td><strong>${row.label}</strong></td><td>${row.value_a}</td><td>${row.value_b}</td>`;
     table.appendChild(tr);
   });
+
   return table;
 }
 
 function renderFollowUps(questions) {
   const wrap = document.createElement("div");
   wrap.className = "follow-ups";
+
   questions.forEach(q => {
     const btn = document.createElement("button");
     btn.type = "button";
@@ -36,6 +39,7 @@ function renderFollowUps(questions) {
     });
     wrap.appendChild(btn);
   });
+
   return wrap;
 }
 
@@ -45,10 +49,16 @@ function addMessage(text, sender, extras = {}) {
 
   if (sender === "bot") {
     const body = document.createElement("div");
+    body.className = "message-body";
     body.innerHTML = marked.parse(text);
     msg.appendChild(body);
-    if (extras.comparison) msg.appendChild(renderComparisonTable(extras.comparison));
-    if (extras.followUps && extras.followUps.length > 0) msg.appendChild(renderFollowUps(extras.followUps));
+
+    if (extras.comparison) {
+      msg.appendChild(renderComparisonTable(extras.comparison));
+    }
+    if (extras.followUps && extras.followUps.length > 0) {
+      msg.appendChild(renderFollowUps(extras.followUps));
+    }
   } else {
     msg.textContent = text;
   }
@@ -85,12 +95,12 @@ formEl.addEventListener("submit", async (e) => {
     if (typewriterTimer) return;
     typewriterTimer = setInterval(() => {
       if (pendingQueue.length === 0) return;
-      const takeChars = 3; // characters revealed per tick — tune to taste
+      const takeChars = 3;
       displayedText += pendingQueue.slice(0, takeChars);
       pendingQueue = pendingQueue.slice(takeChars);
       bodyEl.innerHTML = marked.parse(displayedText);
       chatEl.scrollTop = chatEl.scrollHeight;
-    }, 20); // ms per tick — lower = faster reveal
+    }, 20);
   }
 
   function stopTypewriter() {
@@ -102,8 +112,7 @@ formEl.addEventListener("submit", async (e) => {
 
   try {
     const botMsg = addMessage("", "bot");
-    const bodyEl = document.createElement("div");
-    botMsg.insertBefore(bodyEl, botMsg.firstChild);
+    const bodyEl = botMsg.querySelector(".message-body"); // Direct reference to the rendered body
 
     const res = await fetch("/ask-stream", {
       method: "POST",
@@ -116,8 +125,14 @@ formEl.addEventListener("submit", async (e) => {
     });
 
     if (!res.ok) {
-      const errData = await res.json();
-      throw new Error(errData.error || "Something went wrong.");
+      let message = `Server error (${res.status}). Please try again.`;
+      try {
+        const errData = await res.json();
+        if (errData.error) message = errData.error;
+      } catch (_) {
+        // Fallback to generic status message
+      }
+      throw new Error(message);
     }
 
     const reader = res.body.getReader();
@@ -142,7 +157,7 @@ formEl.addEventListener("submit", async (e) => {
         } else if (parsed.type === "final") {
           const data = parsed.data;
 
-          // Wait for the typewriter to finish revealing whatever's still queued
+          // Wait for remaining characters in queue
           await new Promise(resolve => {
             const check = setInterval(() => {
               if (pendingQueue.length === 0) {
@@ -155,7 +170,9 @@ formEl.addEventListener("submit", async (e) => {
           stopTypewriter();
           bodyEl.innerHTML = marked.parse(data.answer_markdown);
 
-          if (data.comparison) botMsg.appendChild(renderComparisonTable(data.comparison));
+          if (data.comparison) {
+            botMsg.appendChild(renderComparisonTable(data.comparison));
+          }
           if (data.follow_up_questions && data.follow_up_questions.length > 0) {
             botMsg.appendChild(renderFollowUps(data.follow_up_questions));
           }
