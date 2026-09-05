@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     groq_model: str = "openai/gpt-oss-20b"
     flask_secret_key: str = "dev-secret-change-me"
     environment: str = "development"
+    enable_reranker: bool = True
 
 
 settings = Settings()

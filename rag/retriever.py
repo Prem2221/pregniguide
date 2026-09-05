@@ -55,12 +55,17 @@ def hybrid_retrieve(query: str, k: int = 10) -> list[Document]:
 
 @observe(name="retrieve_context")
 def retrieve(query: str, k: int = 4) -> list[Document]:
-    """Full pipeline: rewrite -> hybrid retrieve -> rerank -> top k."""
+    """Full pipeline: rewrite -> hybrid retrieve -> optional rerank -> top k."""
+    from config.settings import settings
     from rag.query_rewriter import rewrite_query  # avoid circular import at module load
 
     rewritten = rewrite_query(query)
     candidates = hybrid_retrieve(rewritten, k=10)
-    return rerank(query, candidates, top_k=k)  # rerank against ORIGINAL query, not rewritten
+
+    if settings.enable_reranker:
+        return rerank(query, candidates, top_k=k)  # rerank against ORIGINAL query
+
+    return candidates[:k]  # skip reranking, truncate hybrid results
 
 
 def format_context(docs: list[Document]) -> str:
