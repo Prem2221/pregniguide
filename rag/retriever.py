@@ -6,7 +6,6 @@ from langchain_core.documents import Document
 from langfuse import observe
 
 from rag.embedder import get_embedding_model
-from rag.reranker import rerank
 
 _db: FAISS | None = None
 _bm25_data: dict | None = None
@@ -63,6 +62,7 @@ def retrieve(query: str, k: int = 4) -> list[Document]:
     candidates = hybrid_retrieve(rewritten, k=10)
 
     if settings.enable_reranker:
+        from rag.reranker import rerank
         return rerank(query, candidates, top_k=k)  # rerank against ORIGINAL query
 
     return candidates[:k]  # skip reranking, truncate hybrid results
