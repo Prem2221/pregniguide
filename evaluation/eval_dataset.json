@@ -1,0 +1,62 @@
+[
+  {
+    "question": "What foods should I avoid during pregnancy?",
+    "ground_truth": "Avoid raw or undercooked eggs, unpasteurized dairy, undercooked meat and poultry, raw fish like sushi, and home-made non-canned pates. Limit caffeine and salty foods."
+  },
+  {
+    "question": "Is it safe to exercise during pregnancy?",
+    "ground_truth": "Mild to moderate exercise at least three times a week is generally safe, unless a doctor advises otherwise. Safe activities include swimming, brisk walking, stationary cycling, and prenatal yoga."
+  },
+  {
+    "question": "What vaccinations are recommended during pregnancy?",
+    "ground_truth": "The WHO recommends certain vaccinations before and during pregnancy to protect both mother and baby; consult the vaccination guidance for specifics on timing and which vaccines are advised."
+  },
+  {
+    "question": "What is PMMVY and who is eligible for it?",
+    "ground_truth": "PMMVY (Pradhan Mantri Matru Vandana Yojana) is an Indian government maternity benefit scheme providing cash incentives to pregnant and lactating women, subject to eligibility criteria and conditionalities."
+  },
+  {
+    "question": "How can I manage mood changes during pregnancy?",
+    "ground_truth": "Perinatal mental health support, including recognizing and addressing mood changes, is an important part of maternal care per WHO guidance on integrating mental health into maternal care."
+  },
+  {
+    "question": "What are common myths about pregnancy?",
+    "ground_truth": "There are many common pregnancy myths and misconceptions addressed in patient education materials, covering topics like diet, activity, and old wives' tales."
+  },
+  {
+    "question": "How should I care for my baby right after birth?",
+    "ground_truth": "WHO postnatal care guidelines cover care of the mother and newborn immediately after birth, including newborn care essentials and monitoring."
+  },
+  {
+    "question": "What are urgent warning signs I should watch for during pregnancy?",
+    "ground_truth": "Urgent warning signs include severe headache, vision changes, fever, severe swelling, trouble breathing, severe belly pain, decreased fetal movement, and vaginal bleeding — seek care immediately."
+  },
+  {
+    "question": "How much water should I drink during pregnancy?",
+    "ground_truth": "It's recommended to drink at least 10 to 12 glasses of water per day during pregnancy."
+  },
+  {
+    "question": "How can I manage heartburn during pregnancy?",
+    "ground_truth": "Eat small, frequent meals, eat slowly, avoid spicy or rich foods and caffeine, drink fluids between rather than during meals, and avoid lying down right after eating."
+  },
+  {
+    "question": "What exercises should I avoid during pregnancy?",
+    "ground_truth": "Avoid holding your breath during activity, activities with a high risk of falling, and exercises not advised by your healthcare provider, especially with certain medical or obstetric conditions."
+  },
+  {
+    "question": "Is it normal to have food cravings during pregnancy?",
+    "ground_truth": "Food cravings are common during pregnancy, though not all women experience them."
+  },
+  {
+    "question": "What should I do about diarrhea during pregnancy?",
+    "ground_truth": "Increase intake of foods containing pectin and gum fiber, such as applesauce, bananas, white rice, oatmeal, and refined wheat bread, to help absorb excess water."
+  },
+  {
+    "question": "What financial support is available for pregnant women in India?",
+    "ground_truth": "The PMMVY scheme provides maternity benefit payments in installments to eligible beneficiaries, subject to fulfilling scheme conditions."
+  },
+  {
+    "question": "Can I dye my hair during pregnancy?",
+    "ground_truth": "This is not covered in the provided reference material, so the assistant should say it doesn't have reliable information on this and recommend consulting a healthcare provider."
+  }
+]

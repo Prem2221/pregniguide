@@ -10,3 +10,8 @@ sentence-transformers
 faiss-cpu
 groq
 flask
+ragas
+datasets
+langfuse<4
+pytest
+rank-bm25

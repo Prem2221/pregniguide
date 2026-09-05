@@ -1,5 +1,9 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+langfuse_public_key: str | None = None
+langfuse_secret_key: str | None = None
+langfuse_host: str = "https://cloud.langfuse.com"
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
